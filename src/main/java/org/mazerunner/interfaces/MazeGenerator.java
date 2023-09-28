@@ -10,7 +10,7 @@ public interface MazeGenerator {
 
     public void generateExit();
 
-    public void generate(int width, int height);
+    public void generate();
 
     public void displayMaze();
 }
