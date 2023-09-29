@@ -48,6 +48,26 @@ public class Case {
         this.matrice = matrice;
     }
 
+    public void open(char direction) {
+        switch (direction) {
+            case 'n':
+                this.matrice.get(0).set(1, '.');
+                break;
+
+            case 's':
+                this.matrice.get(2).set(1, '.');
+                break;
+
+            case 'e':
+                this.matrice.get(1).set(2, '.');
+                break;
+
+            case 'w':
+                this.matrice.get(1).set(0, '.');
+                break;
+        }
+    }
+
     public String getFirstLineString() {
         StringBuilder stringLine = new StringBuilder();
 
