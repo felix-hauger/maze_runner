@@ -50,6 +50,13 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
             }
         }
+
+        /*this.maze.get(0).open('n');
+        this.maze.get(0).open('e');
+        this.maze.get(8).open('w');
+        this.maze.get(8).open('e');*/
+        //System.out.println(this.maze.get(1).getMatrice());
+
         System.out.println(this.maze);
         this.displayMaze();
     }
@@ -76,16 +83,14 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         }
 
         for (int i = 0; i < this.height; i++) {
-            Case mazeCell = this.maze.get(i);
-
-            /*System.out.println("hmm");
-            System.out.println(mazeCell);*/
 
             StringBuilder line1 = new StringBuilder();
             StringBuilder line2 = new StringBuilder();
             StringBuilder line3 = new StringBuilder();
 
             for (int j = 0; j < this.width; j++) {
+                Case mazeCell = this.maze.get(i * this.width + j);
+
                 line1.append(mazeCell.getFirstLineString());
                 line2.append(mazeCell.getSecondLineString());
                 line3.append(mazeCell.getThirdLineString());
