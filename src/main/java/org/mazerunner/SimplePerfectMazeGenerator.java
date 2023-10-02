@@ -46,8 +46,6 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
                 Case mazeCase = new Case();
 
                 this.maze.add(mazeCase);
-
-
             }
         }
 
@@ -63,32 +61,21 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
     @Override
     public void displayMaze() {
-       // Integer lineLength = this.width;
-
-       /* for (int i = 0; i < this.height; i++) {
-            for (int j= 0; j < this.width; i++) {
-
-
-            }
-        }*/
-
-
        for (Case mazeCase : this.maze) {
-
-
             System.out.println(mazeCase.getMatrice());
 
             //ArrayList<ArrayList<Character>> matrice = mazeCase.getMatrice();
-
         }
 
         for (int i = 0; i < this.height; i++) {
 
+            //Create one line to print for each maze cell of the line
             StringBuilder line1 = new StringBuilder();
             StringBuilder line2 = new StringBuilder();
             StringBuilder line3 = new StringBuilder();
 
             for (int j = 0; j < this.width; j++) {
+                // Target correct cell with current iteration to get the current line
                 Case mazeCell = this.maze.get(i * this.width + j);
 
                 line1.append(mazeCell.getFirstLineString());
