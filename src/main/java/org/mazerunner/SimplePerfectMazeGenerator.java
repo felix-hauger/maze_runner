@@ -64,23 +64,36 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
     public void randomMerge() {
         ArrayList<Cell> mazeRandomizedForIteration = new ArrayList<>(this.maze);
 
+        // To iterate randomly on every maze cell
         Collections.shuffle(mazeRandomizedForIteration);
 
-        int cellId = 8;
+        for (Cell randomMazeCell : mazeRandomizedForIteration) {
+            int cellId = randomMazeCell.getId();
 
+            //System.out.println(randomMazeCell.getId());
 
+            // Select a random direction
+            Direction direction = Direction.values()[(int) (Math.random() * Direction.values().length)];
 
+            Cell neighbourCell = this.findNeighbourCell(cellId, direction);
 
-        Direction direction = Direction.SOUTH;
+            if (neighbourCell != null) {
+                System.out.println("Id : " + cellId);
+                System.out.println("Direction : " + direction);
+                System.out.println("Neighbour Id : " + neighbourCell.getId());
 
-        Cell neighbourCell = this.findNeighbourCell(cellId, direction);
+                // Remove wall between cells that have different ids,
+                // which means they are not yet linked to the rest.
+                // Next give them the same id when merging paths.
+                // Must be done until no wall remains
+                if (cellId != neighbourCell.getId()) {
+                    this.mergeCells(this.maze.get(cellId), neighbourCell, direction);
 
-        if (neighbourCell != null) {
-            System.out.println("Direction : " + direction);
-            System.out.println("Id : " + neighbourCell.getId());
-
-            this.mergeCells(this.maze.get(cellId), neighbourCell, direction);
+                    neighbourCell.setId(cellId);
+                }
+            }
         }
+
        /* Cell neighbourCellNorth = this.findNeighbourCell(cellId, Direction.NORTH);
         Cell neighbourCellSouth = this.findNeighbourCell(cellId, Direction.SOUTH);
         Cell neighbourCellEast = this.findNeighbourCell(cellId, Direction.EAST);
@@ -91,11 +104,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         System.out.println("EAST : " + neighbourCellEast.getId());
         System.out.println("WEST : " + neighbourCellWest.getId());*/
 
-        for (Cell randomMazeCell : mazeRandomizedForIteration) {
-            int id = randomMazeCell.getId();
 
-            //System.out.println(randomMazeCell.getId());
-        }
 
     }
 
