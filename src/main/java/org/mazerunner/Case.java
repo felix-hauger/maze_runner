@@ -82,7 +82,8 @@ public class Case {
         StringBuilder stringLine = new StringBuilder();
 
         stringLine.append(this.matrice.get(1).get(0));
-        stringLine.append(this.matrice.get(1).get(1));
+        //stringLine.append(this.matrice.get(1).get(1));
+        stringLine.append(this.id);
         stringLine.append(this.matrice.get(1).get(2));
 
         return stringLine.toString();

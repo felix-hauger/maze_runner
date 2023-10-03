@@ -3,6 +3,8 @@ package org.mazerunner;
 import org.mazerunner.interfaces.MazeGenerator;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class SimplePerfectMazeGenerator implements MazeGenerator {
     private ArrayList<Case> maze = new ArrayList<>();
@@ -40,10 +42,9 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         for (int i = 0; i < this.width; i++) {
 
             for (int j = 0; j < this.height; j++) {
-                //this.maze.add(-1);
-                //ArrayList<String> caseLine = new ArrayList<>();
-
                 Case mazeCase = new Case();
+
+                mazeCase.setId(height * i + j);
 
                 this.maze.add(mazeCase);
             }
@@ -54,7 +55,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         this.maze.get(8).open('w');
         this.maze.get(8).open('e');*/
         //System.out.println(this.maze.get(1).getMatrice());
-
+        
         System.out.println(this.maze);
         this.displayMaze();
     }
@@ -62,7 +63,8 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
     @Override
     public void displayMaze() {
        for (Case mazeCase : this.maze) {
-            System.out.println(mazeCase.getMatrice());
+           System.out.println(mazeCase.getMatrice());
+           System.out.println(mazeCase.getId());
 
             //ArrayList<ArrayList<Character>> matrice = mazeCase.getMatrice();
         }
