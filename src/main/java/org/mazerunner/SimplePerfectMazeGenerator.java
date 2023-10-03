@@ -67,9 +67,22 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
         Collections.shuffle(mazeRandomizedForIteration);
 
-        int cellId = 5;
+        int cellId = 8;
 
-        Case neighbourCellNorth = this.findNeighbourCell(cellId, Direction.NORTH);
+
+
+
+        Direction direction = Direction.SOUTH;
+
+        Case neighbourCell = this.findNeighbourCell(cellId, direction);
+
+        if (neighbourCell != null) {
+            System.out.println("Direction : " + direction);
+            System.out.println("Id : " + neighbourCell.getId());
+
+            this.mergeCells(this.maze.get(cellId), neighbourCell, direction);
+        }
+       /* Case neighbourCellNorth = this.findNeighbourCell(cellId, Direction.NORTH);
         Case neighbourCellSouth = this.findNeighbourCell(cellId, Direction.SOUTH);
         Case neighbourCellEast = this.findNeighbourCell(cellId, Direction.EAST);
         Case neighbourCellWest = this.findNeighbourCell(cellId, Direction.WEST);
@@ -77,7 +90,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         System.out.println("NORTH : " + neighbourCellNorth.getId());
         System.out.println("SOUTH : " + neighbourCellSouth.getId());
         System.out.println("EAST : " + neighbourCellEast.getId());
-        System.out.println("WEST : " + neighbourCellWest.getId());
+        System.out.println("WEST : " + neighbourCellWest.getId());*/
 
         for (Case randomMazeCell : mazeRandomizedForIteration) {
             int id = randomMazeCell.getId();
@@ -85,6 +98,27 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
             //System.out.println(randomMazeCell.getId());
         }
 
+    }
+
+    public void mergeCells(Case cell1, Case cell2, Direction direction) {
+        switch (direction) {
+            case NORTH:
+                cell1.open('n');
+                cell2.open('s');
+                break;
+            case SOUTH:
+                cell1.open('s');
+                cell2.open('n');
+                break;
+            case EAST:
+                cell1.open('e');
+                cell2.open('w');
+                break;
+            case WEST:
+                cell1.open('w');
+                cell2.open('e');
+                break;
+        }
     }
 
     enum Direction {
