@@ -3,11 +3,10 @@ package org.mazerunner;
 import org.mazerunner.interfaces.MazeGenerator;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class SimplePerfectMazeGenerator implements MazeGenerator {
-    private ArrayList<Case> maze = new ArrayList<>();
+    private ArrayList<Cell> maze = new ArrayList<>();
 
     private Integer width;
 
@@ -42,11 +41,11 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         for (int i = 0; i < this.width; i++) {
 
             for (int j = 0; j < this.height; j++) {
-                Case mazeCase = new Case();
+                Cell mazeCell = new Cell();
 
-                mazeCase.setId(height * i + j);
+                mazeCell.setId(height * i + j);
 
-                this.maze.add(mazeCase);
+                this.maze.add(mazeCell);
             }
         }
 
@@ -63,7 +62,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
     }
 
     public void randomMerge() {
-        ArrayList<Case> mazeRandomizedForIteration = new ArrayList<>(this.maze);
+        ArrayList<Cell> mazeRandomizedForIteration = new ArrayList<>(this.maze);
 
         Collections.shuffle(mazeRandomizedForIteration);
 
@@ -74,7 +73,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
         Direction direction = Direction.SOUTH;
 
-        Case neighbourCell = this.findNeighbourCell(cellId, direction);
+        Cell neighbourCell = this.findNeighbourCell(cellId, direction);
 
         if (neighbourCell != null) {
             System.out.println("Direction : " + direction);
@@ -82,17 +81,17 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
             this.mergeCells(this.maze.get(cellId), neighbourCell, direction);
         }
-       /* Case neighbourCellNorth = this.findNeighbourCell(cellId, Direction.NORTH);
-        Case neighbourCellSouth = this.findNeighbourCell(cellId, Direction.SOUTH);
-        Case neighbourCellEast = this.findNeighbourCell(cellId, Direction.EAST);
-        Case neighbourCellWest = this.findNeighbourCell(cellId, Direction.WEST);
+       /* Cell neighbourCellNorth = this.findNeighbourCell(cellId, Direction.NORTH);
+        Cell neighbourCellSouth = this.findNeighbourCell(cellId, Direction.SOUTH);
+        Cell neighbourCellEast = this.findNeighbourCell(cellId, Direction.EAST);
+        Cell neighbourCellWest = this.findNeighbourCell(cellId, Direction.WEST);
 
         System.out.println("NORTH : " + neighbourCellNorth.getId());
         System.out.println("SOUTH : " + neighbourCellSouth.getId());
         System.out.println("EAST : " + neighbourCellEast.getId());
         System.out.println("WEST : " + neighbourCellWest.getId());*/
 
-        for (Case randomMazeCell : mazeRandomizedForIteration) {
+        for (Cell randomMazeCell : mazeRandomizedForIteration) {
             int id = randomMazeCell.getId();
 
             //System.out.println(randomMazeCell.getId());
@@ -100,7 +99,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
     }
 
-    public void mergeCells(Case cell1, Case cell2, Direction direction) {
+    public void mergeCells(Cell cell1, Cell cell2, Direction direction) {
         switch (direction) {
             case NORTH:
                 cell1.open('n');
@@ -125,7 +124,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         NORTH, SOUTH, EAST, WEST
     }
 
-    public Case findNeighbourCell(int cellId, Direction direction) {
+    public Cell findNeighbourCell(int cellId, Direction direction) {
 
         int x = cellId % this.width; // X axis
         int y = cellId / this.width; // Y axis
@@ -182,11 +181,11 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
     @Override
     public void displayMaze() {
-       for (Case mazeCase : this.maze) {
-           //System.out.println(mazeCase.getMatrice());
-           //System.out.println(mazeCase.getId());
+       for (Cell mazeCell : this.maze) {
+           //System.out.println(mazeCell.getMatrice());
+           //System.out.println(mazeCell.getId());
 
-            //ArrayList<ArrayList<Character>> matrice = mazeCase.getMatrice();
+            //ArrayList<ArrayList<Character>> matrice = mazeCell.getMatrice();
         }
        //Collections.shuffle(this.maze);
 
@@ -199,7 +198,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
             for (int j = 0; j < this.width; j++) {
                 // Target correct cell with current iteration to get the current line
-                Case mazeCell = this.maze.get(i * this.width + j);
+                Cell mazeCell = this.maze.get(i * this.width + j);
 
                 line1.append(mazeCell.getFirstLineString());
                 line2.append(mazeCell.getSecondLineString());

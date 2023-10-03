@@ -2,13 +2,13 @@ package org.mazerunner;
 
 import java.util.ArrayList;
 
-public class Case {
+public class Cell {
 
     private Integer id;
 
     private ArrayList<ArrayList<Character>> matrice;
 
-    public Case() {
+    public Cell() {
         this.matrice = new ArrayList<>();
 
         ArrayList<Character> firstLine = new ArrayList<>();
