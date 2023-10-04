@@ -52,6 +52,9 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
 
         this.randomMerge();
 
+        this.maze.get(0).open('w');
+        this.maze.get(maze.size() - 1).open('e');
+
         this.displayMaze();
     }
 
