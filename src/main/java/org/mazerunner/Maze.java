@@ -4,12 +4,9 @@ import org.mazerunner.interfaces.MazeGenerator;
 
 public class Maze {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
 
-        System.out.println("coucou");
-
-        System.out.println(args[2]);
-        System.out.println(args[3]);
+        String perfectOrImperfect = args[2];
+        String constructionMethod = args[3];
 
 
         try {
@@ -22,7 +19,7 @@ public class Maze {
                 System.out.println("Erreur : Veuillez fournir une largeur et une hauteur valides supérieurs à 5");
                 System.out.println("Utilisation : java -jar MazeGenerator [largeur] [hauteur] [perfect/imperfect] [simple/graph/optimized]");
             } else {
-                if (args[2].equals("perfect") && args[3].equals("simple")) {
+                if (perfectOrImperfect.equals("perfect") && constructionMethod.equals("simple")) {
                     MazeGenerator maze = new SimplePerfectMazeGenerator(width, height);
 
                     maze.generate();

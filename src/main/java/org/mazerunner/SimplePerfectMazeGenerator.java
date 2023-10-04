@@ -61,7 +61,7 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
         int remainingWalls = (this.width - 1) * this.height + (this.height - 1) * this.width;
 
 
-        System.out.println("murs : " + remainingWalls);
+        //System.out.println("murs : " + remainingWalls);
 
         // To iterate randomly on every maze cell
         Collections.shuffle(mazeRandomizedForIteration);
@@ -89,11 +89,11 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
                 Cell neighbourCell = this.findNeighbourCell(randomMazeCellId, direction);
 
                 if (neighbourCell != null) {
-                    System.out.println();
+                    /*System.out.println();
 
                     System.out.println("Id : " + randomMazeCellId);
                     System.out.println("Direction : " + direction);
-                    System.out.println("Neighbour Id : " + neighbourCell.getId());
+                    System.out.println("Neighbour Id : " + neighbourCell.getId());*/
 
                     int neighbourCellId = neighbourCell.getId();
 
@@ -103,18 +103,18 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
                     // Must be done until no wall remains
                     if (randomMazeCellId != neighbourCellId) {
 
-                        System.out.println("merged");
+                        //System.out.println("merged");
 
 
                         this.mergeCells(this.maze.get(randomMazeCellId), neighbourCell, direction);
 
                         for (Cell cell : this.maze) {
-                            System.out.println("maze cell id : " + cell.getId() + " ; neighbour cell id : " + neighbourCellId);
+                            //System.out.println("maze cell id : " + cell.getId() + " ; neighbour cell id : " + neighbourCellId);
 
 
                             if (cell.getId() == neighbourCellId) {
                                 cell.setId(randomMazeCellId);
-                                System.out.println("switch id");
+                               // System.out.println("switch id");
                             }
                             //System.out.println("maze cell id : " + cell.getId());
 
@@ -125,8 +125,8 @@ public class SimplePerfectMazeGenerator implements MazeGenerator {
                         remainingWalls -= 1;
 
                         //System.out.println("FUSE");
-                        this.displayMaze();
-                        System.out.println();
+                        //this.displayMaze();
+                        //System.out.println();
 
                     }
                 }
